@@ -1,0 +1,16 @@
+<html lang="en">
+<head>
+    <title>Edit {{merchant.name}}</title>
+</head>
+<body>
+    <h1>Edit {{merchant.name}}</h1>
+    <p>
+    <a href="/merchants">Return to the list of merchants</a>
+    </p>    
+    <form method="post" action="/merchants/edit/{{ merchant.id }}">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ merchant.name }}" required>
+        <button type="submit">Edit Merchant</button>
+    </form>
+</body>
+</html>

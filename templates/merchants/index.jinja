@@ -7,12 +7,29 @@
     <a href="/merchants/new">New Merchant</a>
 </p>
 <table>
-    <tr>
-        <th>List of merchants:</th>  
-    </tr>
-    {% for merchant in merchants %}
-    <tr>
-        <td><a href="/merchants/{{ merchant.id }}"> {{merchant.name}} </a></td>
-    </tr>
-    {% endfor %}
+    <thead>
+        <tr>
+            <th>List of merchants: </th>
+            <th>Actions: </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for merchant in merchants %}
+        <tr>
+            <td><a href="/merchants/{{ merchant.id }}">{{ merchant.name }}</a></td>
+            <td>
+                <form action="/merchants/delete" method="POST">
+                    <input type="hidden" name="merchant_id" value="{{ merchant.id }}">
+                    <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                </form>
+            </td>
+            <td>
+                <form method="get" action="/merchants/edit/{{ merchant.id }}">
+                    <button type="submit" class="edit-button">Edit</button>
+                </form>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>

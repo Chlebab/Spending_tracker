@@ -16,7 +16,7 @@ def tags():
 def show(id):
     tag = Tag.query.get(id)
     merchants = Merchant.query.join(Transaction).filter(Transaction.tag_id == id)
-    return render_template("tags/show.jinja", tag=tag, merchants=merchants)
+    return render_template("tags/show_tag.jinja", tag=tag, merchants=merchants)
 
 @tags_blueprint.route("/tags/new", methods=["GET"])
 def new_tag_form():
