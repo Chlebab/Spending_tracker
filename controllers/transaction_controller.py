@@ -11,3 +11,9 @@ transactions_blueprint = Blueprint("transactions", __name__)
 def transactions():
     transactions = Transaction.query.all()
     return render_template("transactions/index.jinja", transactions = transactions)
+
+@transactions_blueprint.route("/transactions/new", methods=['GET'])
+def new_transaction():
+    merchants = Merchant.query.all()
+    tags = Tag.query.all()
+    return render_template("transactions/new.jinja", merchants = merchants, tags = tags)

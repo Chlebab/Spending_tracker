@@ -1,0 +1,18 @@
+<h1>Merchants</h1>
+
+<p>
+    <a href="/">Home</a>
+</p>
+<p>
+    <a href="/merchants/new">New Merchant</a>
+</p>
+<table>
+    <tr>
+        <th>List of merchants:</th>  
+    </tr>
+    {% for merchant in merchants %}
+    <tr>
+        <td><a href="/merchants/{{ merchant.id }}"> {{merchant.name}} </a></td>
+    </tr>
+    {% endfor %}
+</table>

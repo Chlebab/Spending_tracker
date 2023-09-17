@@ -1,0 +1,19 @@
+<h1>Transactions</h1>
+
+<p>
+    <a href="/transactions/new">New Transaction</a>
+</p>
+
+<ul>
+    {% for trabsaction in transactions %}
+    <li>
+    <p>{{ transaction.merchant.name }} - {{ transaction.tag.category }} </p>
+    <p>"<i>{{transaction.amount}}</i>"</p>
+        <p>
+            <form action="/transactions/{{ transaction.id }}/delete" method="POST">
+                <input type="submit" value="delete" />
+            </form>
+        </p>
+    </li>
+    {% endfor %}
+</ul>

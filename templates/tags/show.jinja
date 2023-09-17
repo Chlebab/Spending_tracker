@@ -1,0 +1,11 @@
+<h1> {{tag.category}} </h1>
+<p>
+    <a href="/tags">Return</a>
+</p>
+<h3>Details:</h3>
+
+<ul>
+    {% for tag in tags  %}
+    <li>{{tag.category}}</li>
+    {% endfor %}
+</ul>

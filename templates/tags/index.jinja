@@ -1,0 +1,18 @@
+<h1>Tags</h1>
+
+<p>
+    <a href="/">Home</a>
+</p>
+<p>
+    <a href="/tags/new">New Tag</a>
+</p>
+<table>
+    <tr>
+        <th>List of tags: </th>
+    </tr>
+    {% for tag in tags %}
+    <tr>
+        <td><a href="/tags/{{ tag.id }}"> {{tag.category}} </a></td>
+    </tr>
+    {% endfor %}
+</table>

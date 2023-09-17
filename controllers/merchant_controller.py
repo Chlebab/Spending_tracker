@@ -12,8 +12,20 @@ def merchants():
     merchants = Merchant.query.all()
     return render_template("merchants/index.jinja", merchants = merchants)
 
-# @users_blueprint.route("/users/<id>")
-# def show(id):
-#     user = User.query.get(id)
-#     locations = Location.query.join(Visit).filter(Visit.user_id == id)
-#     return render_template("users/show.jinja", user=user, locations=locations)
+@merchants_blueprint.route("/merchants/<id>")
+def show(id):
+    merchant = Merchant.query.get(id)
+    tags = Tag.query.join(Transaction).filter(Transaction.merchant_id == id)
+    return render_template("merchants/show.jinja", merchant=merchant, tags=tags)
+
+@merchants_blueprint.route("/merchants/new", methods=["GET"])
+def new_merchant_form():
+    return render_template("merchants/new_merchant.jinja")
+
+@merchants_blueprint.route("/merchants/new", methods=["POST"])
+def add_new_merchant():
+    merchant_name = request.form["name"]    
+    merchant_to_save = Merchant(name=merchant_name)
+    db.session.add(merchant_to_save)
+    db.session.commit()
+    return redirect("/merchants")  

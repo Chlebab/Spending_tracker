@@ -1,0 +1,11 @@
+<h1> {{merchant.name}} </h1>
+<p>
+    <a href="/merchants">Return</a>
+</p>
+<h3>Details:</h3>
+
+<ul>
+    {% for merchant in merchants  %}
+    <li>{{merchant.name}}</li>
+    {% endfor %}
+</ul>
