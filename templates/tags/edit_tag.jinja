@@ -1,0 +1,16 @@
+<html lang="en">
+<head>
+    <title>Edit {{tag.name}}</title>
+</head>
+<body>
+    <h1>Edit {{tag.name}}</h1>
+    <p>
+    <a href="/tags">Return to the list of tags</a>
+    </p>    
+    <form method="post" action="/tags/edit/{{ tag.id }}">
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" value="{{ tag.category }}" required>
+        <button type="submit">Edit Tag</button>
+    </form>
+</body>
+</html>

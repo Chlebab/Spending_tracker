@@ -1,19 +1,38 @@
 <h1>Transactions</h1>
 
 <p>
+    <a href="/">Home</a>
+</p>
+<p>
     <a href="/transactions/new">New Transaction</a>
 </p>
-
-<ul>
-    {% for trabsaction in transactions %}
-    <li>
-    <p>{{ transaction.merchant.name }} - {{ transaction.tag.category }} </p>
-    <p>"<i>{{transaction.amount}}</i>"</p>
-        <p>
-            <form action="/transactions/{{ transaction.id }}/delete" method="POST">
-                <input type="submit" value="delete" />
-            </form>
-        </p>
-    </li>
-    {% endfor %}
-</ul>
+<table>
+    <thead>
+        <tr>
+            <th>List of Transactions: </th>
+            <th>Actions: </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ transaction.merchant.name }}</td>
+            <td>{{ transaction.tag.category }}</td>
+            <td>{{ transaction.amount }}</td>
+            <td>
+                <form action="/transactions/delete" method="POST">
+                    <input type="hidden" name="transaction_id" value="{{ transaction.id }}">
+                    <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                </form>
+            </td>
+            <td>
+                <form method="get" action="/transactions/edit/{{ transaction.id }}">
+                    <button type="submit" class="edit-button">Edit</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p>Total spendings: {{ transactions_sum }}</p>

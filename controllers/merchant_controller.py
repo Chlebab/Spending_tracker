@@ -51,4 +51,4 @@ def edit_merchant(id):
         new_merchant_name = request.form.get("name")
         merchant_to_edit.name = new_merchant_name
         db.session.commit()
-        return redirect(f"/merchants/")
+        return redirect(f"/merchants")

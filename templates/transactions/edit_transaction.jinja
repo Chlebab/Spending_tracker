@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <title>Edit transaction</title>
+</head>
+<body>
+    <h1>Edit transaction:</h1>
+    <h2>Merchant:{{transaction.merchant.name}} Tag:{{transaction.tag.category}} Amount:{{transaction.amount}}</h2>
+
+    <form method="post" action="/transactions/edit/{{ transaction.id }}">
+        <label for="merchant_name">Merchant name:</label>
+        <select id="merchant_name" name="merchant_id" required>
+            {% for merchant in merchants %}
+                <option value="{{ merchant.id }}"
+                    {% if merchant.id == transaction.merchant_id %}
+                        selected
+                    {% endif %}>
+                {{ merchant.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="tag_category">Tag category: </label>
+        <select id="tag_category" name="tag_id" required>
+            {% for tag in tags %}
+                <option value="{{ tag.id }}"
+                    {% if tag.id == transaction.tag_id %}
+                        selected
+                    {% endif %}>
+                {{ tag.category }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" value="{{ transaction.amount }}" required step="0.01">
+
+        <button type="submit">Edit Tag</button>
+    </form>
+    <p>
+    <a href="/transactions">Return to the list of transactions</a>
+    </p>    
+</body>
+</html>
