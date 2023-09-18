@@ -15,8 +15,7 @@ def merchants():
 @merchants_blueprint.route("/merchants/<id>")
 def show(id):
     merchant = Merchant.query.get(id)
-    tags = Tag.query.join(Transaction).filter(Transaction.merchant_id == id)
-    return render_template("merchants/show_merchant.jinja", merchant=merchant, tags=tags)
+    return render_template("merchants/show_merchant.jinja", merchant=merchant)
 
 @merchants_blueprint.route("/merchants/new", methods=["GET"])
 def new_merchant_form():
@@ -35,6 +34,17 @@ def delete_merchant():
     id = request.form.get("merchant_id") 
     merchant_to_delete = Merchant.query.get(id)
     db.session.delete(merchant_to_delete)
+    db.session.commit()
+    return redirect("/merchants")
+
+@merchants_blueprint.route("/merchants/activate", methods =["POST"])
+def activate_merchant():
+    id = request.form.get("merchant_id") 
+    merchant_to_activate = Merchant.query.get(id)
+    if merchant_to_activate.activate_merchant == False:
+        merchant_to_activate.activate_merchant = True
+    elif merchant_to_activate.activate_merchant == True:
+        merchant_to_activate.activate_merchant = False
     db.session.commit()
     return redirect("/merchants")
 

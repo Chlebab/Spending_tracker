@@ -15,7 +15,6 @@ def tags():
 @tags_blueprint.route("/tags/<id>")
 def show(id):
     tag = Tag.query.get(id)
-    # merchants = merchants.query.join(Transaction).filter(Transaction.tag_id == id)
     return render_template("tags/show_tag.jinja", tag=tag)
 
 @tags_blueprint.route("/tags/new", methods=["GET"])
@@ -36,6 +35,17 @@ def delete_tag():
     id = request.form.get("tag_id") 
     tag_to_delete = Tag.query.get(id)
     db.session.delete(tag_to_delete)
+    db.session.commit()
+    return redirect("/tags")
+
+@tags_blueprint.route("/tags/activate", methods =["POST"])
+def activate_tag():
+    id = request.form.get("tag_id") 
+    tag_to_activate = Tag.query.get(id)
+    if tag_to_activate.activate_tag == False:
+        tag_to_activate.activate_tag = True
+    elif tag_to_activate.activate_tag == True:
+        tag_to_activate.activate_tag = False
     db.session.commit()
     return redirect("/tags")
 

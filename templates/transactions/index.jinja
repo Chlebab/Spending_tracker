@@ -15,9 +15,11 @@
     <thead>
         <tr>
             <th>No.</th>
-            <th>Merchant</th>
-            <th>Category</th>
-            <th>Amount</th>
+            <th><a href="{{ url_for('transactions.sort_transactions', column='merchant') }}">Merchant</a></th>
+            <th><a href="{{ url_for('transactions.sort_transactions', column='category') }}">Category</a></th>
+            <th><a href="{{ url_for('transactions.sort_transactions', column='amount') }}">Amount</a></th>
+            <th><a href="{{ url_for('transactions.sort_transactions', column='date') }}">Date</a></th>
+            <th><a href="{{ url_for('transactions.sort_transactions', column='comment') }}">Comment</a></th>
             <th>Delete</th>
             <th>Edit</th>
         </tr>
@@ -29,6 +31,8 @@
             <td>{{ transaction.merchant.name }}</td>
             <td>{{ transaction.tag.category }}</td>
             <td>{{ transaction.amount }}</td>
+            <td>{{ transaction.date }}</td>
+            <td>{{ transaction.comment }}</td>
             <td>
                 <form action="/transactions/delete" method="POST">
                     <input type="hidden" name="transaction_id" value="{{ transaction.id }}">

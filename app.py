@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -27,3 +27,4 @@ def home():
 
 if __name__ == '__main__':
     app.run(debug=True)
+

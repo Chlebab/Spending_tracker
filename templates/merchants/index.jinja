@@ -16,13 +16,27 @@
     <thead>
         <tr>
             <th>List of merchants: </th>
-            <th>Actions: </th>
+            <th>Activated: </th>
+            <th>Activate button: </th>
+            <th>Delete: </th>
+            <th>Edit: </th>
         </tr>
     </thead>
     <tbody>
         {% for merchant in merchants %}
         <tr>
             <td><a href="/merchants/{{ merchant.id }}">{{ merchant.name }}</a></td>
+            <td>{{ merchant.activate_merchant}}</td>
+            <td>
+                <form action="/merchants/activate" method="POST">
+                    <input type="hidden" name="merchant_id" value="{{ merchant.id }}">
+                    {% if merchant.activate_merchant == True %}
+                        <button type="submit">Deactivate</button>
+                    {% elif merchant.activate_merchant == False %}
+                        <button type="submit">Activate</button>
+                    {% endif %}
+                </form>
+            </td>            
             <td>
                 <form action="/merchants/delete" method="POST">
                     <input type="hidden" name="merchant_id" value="{{ merchant.id }}">

@@ -9,17 +9,27 @@
     <label for="merchant">Select a merchant:</label>
         <select name="merchant_id" id="merchants">
         {% for merchant in merchants %}
-        <option value="{{ merchant.id }}">{{ merchant.name }}</option>
+            {% if merchant.activate_merchant == True %}
+                <option value="{{ merchant.id }}">{{ merchant.name }}</option>
+            {% endif %}
         {% endfor %}
         </select>
     <label for="tag">Select a tag:</label>
         <select name="tag_id" id="tags">
             {% for tag in tags %}
-            <option value="{{ tag.id }}">{{ tag.category }}</option>
+                {% if tag.activate_tag == True %}
+                    <option value="{{ tag.id }}">{{ tag.category }}</option>
+                {% endif %}
             {% endfor %}
         </select>
 
     <label for="amount">Add an amount:</label>
     <input type="number" name="amount" id="amount" step="0.01" required>
+
+    <label for="date">Add a date:</label>
+    <input type="date" name="date" id="date" required>,    
+
+    <label for="comment">Add a comment:</label>
+    <input type="text" name="comment" id="comment">
     <input type='submit' value="Transaction">
 </form>

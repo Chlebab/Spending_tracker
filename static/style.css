@@ -41,7 +41,6 @@ main>nav>ul {
     list-style: none;
     padding: 0;
 
-
 }
 body {
     background-color: rgb(95, 79, 79);
@@ -71,6 +70,7 @@ main>nav>ul>li>a {
 table {
     width: 100%;
     border-collapse: collapse;
+    background-color: rgb(76, 56, 56);
 }
 
 th, td {
