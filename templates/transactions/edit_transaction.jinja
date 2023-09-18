@@ -16,12 +16,12 @@
             <select id="merchant_name" name="merchant_id" required>
             {% for merchant in merchants %}
                 {% if merchant.activate_merchant == True %}
-                    <option value="{{ merchant.id }}">{{ merchant.name }}</option>                   
-                    {% endif %}
-                    {% if merchant.id == transaction.merchant_id %}
-                        selected
-                    {% endif %}>
-
+                    <option value="{{ merchant.id }}"
+                        {% if merchant.id == transaction.merchant_id %}
+                            selected
+                        {% endif %}                    
+                >{{ merchant.name }}</option>                   
+                {% endif %}
             {% endfor %}
         </select>
 
@@ -29,12 +29,12 @@
         <select id="tag_category" name="tag_id" required>
             {% for tag in tags %}
                 {% if tag.activate_tag == True %}
-                    <option value="{{ tag.id }}">{{ tag.category }}</option>
-                {{ tag.category }}</option>
+                    <option value="{{ tag.id }}"
+                        {% if tag.id == transaction.tag_id %}
+                            selected
+                        {% endif %}                    
+                >{{ tag.category }}</option>                   
                 {% endif %}
-                {% if tag.id == transaction.tag_id %}
-                    selected
-                {% endif %}>
 
             {% endfor %}
         </select>
