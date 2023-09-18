@@ -1,0 +1,88 @@
+h1 {
+    font-family: verdana, Arial;
+    font-size: 70px;   
+    padding: 20px; 
+    background-color: rgb(51, 35, 35);
+    color: rgb(154, 167, 179);
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+    margin-bottom: 10px;
+
+}
+
+h3 {
+    font-family: verdana, Arial;
+    font-size: 35px;
+    margin:0;    
+    display: flex;
+    justify-content: center;
+}
+
+.MainHeader {
+    font-family: verdana, Arial;
+    font-size: 70px;   
+    padding: 20px; 
+    background-color: rgb(51, 35, 35);
+    color: rgb(154, 167, 179);
+    border-radius: 50px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: column;
+}
+
+main>nav>ul {
+    font-family: verdana, Arial;
+    font-size: 35px;
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: 0;
+
+
+}
+body {
+    background-color: rgb(95, 79, 79);
+
+}
+a {
+    color:rgb(6, 4, 4);
+    text-decoration: none;
+    font-size: 20px;
+}
+
+a:hover {
+    color: rgb(85, 29, 135);
+}
+
+
+main>nav>ul>li>a {
+    color: rgb(154, 167, 179);
+    background-color: rgb(118, 82, 82);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    border-color: rgb(80, 120, 120);
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #000000;
+}
+
+th {
+    background-color: #463737;
+}
+
+tr:hover {
+    background-color: #575050;
+}

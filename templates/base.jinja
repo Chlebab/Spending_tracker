@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BIG MONEY $PENDER</title>
+    <div class="MainHeader">
+        <h1>BIG MONEY $PENDER</h1>
+        <h3>Manage your money efficiently!</h3>
+    </div>
+{% block stylelink %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}"/>
+{% endblock %}    
+
+</head>
+<body>
+<main>
+    <nav>
+        <ul>
+            <li>
+            <a href="/transactions">Transactions</a>
+            </li>
+            <li>
+            <a href="/tags">Tags</a>
+            </li>
+            <li>
+            <a href="/merchants">Merchants</a>
+            </li>
+        </ul>
+    </nav>
+    <section id="content">
+        {% block content %}
+
+        {% endblock%}    
+    </section>
+</main>
+</body>
+</html>

@@ -1,6 +1,11 @@
 <html lang="en">
 <head>
     <title>Edit {{merchant.name}}</title>
+{% block stylelink %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}"/>
+{% endblock %} 
 </head>
 <body>
     <h1>Edit {{merchant.name}}</h1>

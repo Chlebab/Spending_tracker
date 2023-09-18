@@ -1,6 +1,11 @@
 <html lang="en">
 <head>
     <title>Create New Tag</title>
+{% block stylelink %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}"/>
+{% endblock %} 
 </head>
 <body>
     <h1>Create a New Tag</h1>

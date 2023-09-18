@@ -1,3 +1,9 @@
+{% block stylelink %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}"/>
+{% endblock %} 
+
 <h1>Merchants</h1>
 
 <p>
@@ -6,7 +12,7 @@
 <p>
     <a href="/merchants/new">New Merchant</a>
 </p>
-<table>
+<table class="table">
     <thead>
         <tr>
             <th>List of merchants: </th>
