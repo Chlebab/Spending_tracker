@@ -3,21 +3,30 @@ from flask import Blueprint
 from models.merchant import Merchant
 from models.tag import Tag
 from models.transaction import Transaction
+from models.budget import Budget
 from app import db
+
 
 transactions_blueprint = Blueprint("transactions", __name__)
 
-@transactions_blueprint.route("/transactions")
+@transactions_blueprint.route("/transactions", methods=["GET"])
 def transactions():
-    transactions = Transaction.query.all()
+    start_date = request.args.get("start_date")
+    end_date = request.args.get("end_date")    
+    if start_date and end_date:
+        transactions = Transaction.query.filter(Transaction.date.between(start_date, end_date)).all()
+    else:
+        transactions = Transaction.query.all()
+    budget = Budget.query.first()
     transactions_sum = sum(transaction.amount for transaction in transactions)
-    return render_template("transactions/index.jinja", transactions = transactions, transactions_sum=transactions_sum)
+
+
+    return render_template("transactions/index.jinja", transactions = transactions, transactions_sum=transactions_sum, budget=budget)
 
 @transactions_blueprint.route("/transactions/<int:id>")
 def show(id):
     transaction = Transaction.query.get(id)
-    merchants = Merchant.query.join(Transaction).filter(Transaction.tag_id == id)
-    return render_template("transactions/show_transaction.jinja", transaction=transaction, merchants=merchants)
+    return render_template("transactions/show_transaction.jinja", transaction=transaction)
 
 @transactions_blueprint.route("/transactions/new", methods=['GET'])
 def new_transaction_form():
@@ -56,7 +65,6 @@ def edit_transaction_form(id):
 @transactions_blueprint.route("/transactions/edit/<int:id>", methods = ["POST"])
 def edit_transaction(id):
     transaction_to_edit = Transaction.query.get(id)
-
     if transaction_to_edit:
         merchant_id = request.form.get("merchant_id")
         tag_id = request.form.get("tag_id")
@@ -77,10 +85,11 @@ def get_transactions():
     transactions = Transaction.query.all()
     return transactions
 
-@transactions_blueprint.route("/transactions/sort/<column>")
+@transactions_blueprint.route("/transactions/sort/<column>", methods=["GET", "POST"])
 def sort_transactions(column):
     transactions = get_transactions()
     transactions_sum = sum(transaction.amount for transaction in transactions)
+
     if column == 'merchant':
         transactions = sorted(transactions, key=lambda t: t.merchant.name)
     elif column == 'category':

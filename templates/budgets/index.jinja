@@ -1,0 +1,42 @@
+{% block stylelink %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}"/>
+{% endblock %} 
+<h1>Budgets</h1>
+
+<p>
+    <a href="/transactions">Go back</a>
+</p>
+<form action="/budgets" method="GET">
+    <label for="start_date">Start Date:</label>
+    <input type="date" name="start_date" id="start_date">
+    <label for="end_date">End Date:</label>
+    <input type="date" name="end_date" id="end_date">
+    <input type="submit" value="Filter transactions by date">
+</form>
+<p>Total spendings: {{ transactions_sum }}</p>
+
+{% if budget_amount is not defined %}
+<form action="/budgets" method="POST">
+    <div>
+        Set a new budget:<input type="number" name="budget"/>
+        <input type="submit" value="Submit"/>
+    </div>
+</form>
+{% endif %}
+{% if budget.budget_amount is defined %}
+<table>
+    <td>
+        Your budget: {{ budget.budget_amount }}
+    </td>
+
+    <td>
+        <form action="/budgets/delete/{{ budget.id }}" method="POST">
+            <button type="submit">Delete Budget</button>
+        </form>
+    </td>
+</table>
+{% endif %}
+
+<p><img src="{{ img_src }}" alt="Spending Over Time" /></p>

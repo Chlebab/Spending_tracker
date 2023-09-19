@@ -11,6 +11,32 @@
 <p>
     <a href="/transactions/new">New Transaction</a>
 </p>
+<p>
+    <a href="/budgets">Budgets</a>
+</p>
+{% if budget %}
+    <p>Your budget: {{ budget.budget_amount }}</p>
+{% else %}
+    <p>No budget set.</p>
+{% endif %}
+
+<p>Total spendings: {{ transactions_sum }}</p>
+
+{% if budget and budget.budget_amount < transactions_sum %}
+    <p>You are over the budget!</p>
+{% elif budget and budget.budget_amount - transactions_sum < 500 %}
+    <p>You are nearly at the budget!</p>
+{% endif %}
+<form action="/transactions" method="GET">
+    <label for="start_date">Start Date:</label>
+    <input type="date" name="start_date" id="start_date">
+    <label for="end_date">End Date:</label>
+    <input type="date" name="end_date" id="end_date">
+    <input type="submit" value="Filter transactions by date">
+</form>
+
+
+
 <table>
     <thead>
         <tr>
@@ -48,4 +74,3 @@
         {% endfor %}
     </tbody>
 </table>
-<p>Total spendings: {{ transactions_sum }}</p>

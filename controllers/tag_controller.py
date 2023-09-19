@@ -3,6 +3,7 @@ from flask import Blueprint
 from models.merchant import Merchant
 from models.tag import Tag
 from models.transaction import Transaction
+from models.budget import Budget
 from app import db
 
 tags_blueprint = Blueprint("tags", __name__)
