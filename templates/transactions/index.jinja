@@ -23,7 +23,7 @@
 <p>Total spendings: {{ transactions_sum }}</p>
 
 {% if budget and budget.budget_amount < transactions_sum %}
-    <p>You are over the budget!</p>
+    <p>You are over the budget by: {{ transactions_sum - budget.budget_amount }}</p>
 {% elif budget and budget.budget_amount - transactions_sum < 500 %}
     <p>You are nearly at the budget!</p>
 {% endif %}

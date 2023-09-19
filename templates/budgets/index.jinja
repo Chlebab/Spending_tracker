@@ -17,20 +17,19 @@
 </form>
 <p>Total spendings: {{ transactions_sum }}</p>
 
-{% if budget_amount is not defined %}
-<form action="/budgets" method="POST">
-    <div>
-        Set a new budget:<input type="number" name="budget"/>
+{% if budget.budget_amount is not defined %}
+    <form action="/budgets" method="POST">
+        <div>
+            Set a new budget:<input type="number" name="budget"/>
         <input type="submit" value="Submit"/>
-    </div>
-</form>
+        </div>
+    </form>
 {% endif %}
 {% if budget.budget_amount is defined %}
 <table>
     <td>
         Your budget: {{ budget.budget_amount }}
     </td>
-
     <td>
         <form action="/budgets/delete/{{ budget.id }}" method="POST">
             <button type="submit">Delete Budget</button>
