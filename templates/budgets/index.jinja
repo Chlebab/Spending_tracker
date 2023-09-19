@@ -5,9 +5,20 @@
 {% endblock %} 
 <h1>Budgets</h1>
 
-<p>
-    <a href="/transactions">Go back</a>
-</p>
+<body>
+<main>
+    <nav>
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="/transactions">Transactions</a>
+            </li>
+        </ul>
+    </nav>
+</main>
+</body>
 <form action="/budgets" method="GET">
     <label for="start_date">Start Date:</label>
     <input type="date" name="start_date" id="start_date">

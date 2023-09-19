@@ -5,15 +5,23 @@
 {% endblock %} 
 <h1>Transactions</h1>
 
-<p>
-    <a href="/">Home</a>
-</p>
-<p>
-    <a href="/transactions/new">New Transaction</a>
-</p>
-<p>
-    <a href="/budgets">Budgets</a>
-</p>
+<body>
+<main>
+    <nav>
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="/transactions/new">New Transaction</a>
+            </li>
+            <li>
+                <a href="/budgets">Budgets</a>
+            </li>
+        </ul>
+    </nav>
+</main>
+</body>
 {% if budget %}
     <p>Your budget: {{ budget.budget_amount }}</p>
 {% else %}

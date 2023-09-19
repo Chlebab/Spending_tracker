@@ -1,0 +1,21 @@
+<html lang="en">
+<head>
+    <title>Create New User</title>
+{% block stylelink %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}"/>
+{% endblock %} 
+</head>
+<body>
+    <h1>Create a New User</h1>
+    <form method="post" action="/users/new">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="funds">Available funds:</label>
+        <input type="number" id="funds" name="funds" required>
+        <button type="submit">Create User</button>
+    </form>
+</body>
+</html>

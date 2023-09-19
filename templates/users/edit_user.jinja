@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <title>Edit {{user.username}}</title>
+{% block stylelink %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}"/>
+{% endblock %} 
+</head>
+
+<main>
+<body>
+    <h1>Edit {{user.username}}</h1>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="/users">Return to the list of users</a>
+            </li> 
+        </ul>
+    </nav>
+    <form method="post" action="/users/edit/{{ user.id }}">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="funds">Funds:</label>
+        <input type="number" id="funds" name="funds" required>
+        <button type="submit">Edit User</button>
+    </form>
+</body>
+</main>
+</html>
