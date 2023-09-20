@@ -7,18 +7,50 @@ from models.user import User
 from models.budget import Budget
 from models.vault import Vault
 from app import db
+from datetime import datetime
 
 users_blueprint = Blueprint("users", __name__)
 
 @users_blueprint.route("/users")
 def users():
     users = User.query.all()
-    return render_template("users/index.jinja", users = users)
+
+    for user in users:
+        transactions = Transaction.query.filter_by(user_id=user.id).all()
+        transactions_sum = sum(transaction.amount for transaction in transactions)
+
+    return render_template("users/index.jinja", users = users, transactions_sum=transactions_sum)
 
 @users_blueprint.route("/users/<id>")
 def show(id):
     user = User.query.get(id)
     return render_template("users/show_user.jinja", user=user)
+
+@users_blueprint.route("/users/<int:id>", methods=["GET"])
+def user_transactions(id):
+    start_date_str = request.args.get("start_date")
+    end_date_str = request.args.get("end_date") 
+
+    if start_date_str:
+        start_date = datetime.strptime(start_date_str, "%Y-%m-%d").date()
+    else:
+        start_date = None
+
+    if end_date_str:
+        end_date = datetime.strptime(end_date_str, "%Y-%m-%d").date()
+    else:
+        end_date = None
+
+    user = User.query.get(id)
+    user_transactions = Transaction.query.filter_by(user_id=id).all()  
+    if start_date and end_date:
+        filtered_transactions = [transactions for transactions in user_transactions if start_date <= transactions.date <= end_date]
+        transactions_sum = sum(transaction.amount for transaction in filtered_transactions)
+    else:
+        filtered_transactions = user_transactions
+        transactions_sum = sum(transaction.amount for transaction in user_transactions)
+        
+    return render_template("users/show_user.jinja", user=user, transactions=filtered_transactions, transactions_sum=transactions_sum)
 
 @users_blueprint.route("/users/new", methods=["GET"])
 def new_user_form():

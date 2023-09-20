@@ -21,7 +21,7 @@ def transactions():
         transactions = Transaction.query.all()
     budget = Budget.query.first()
     transactions_sum = sum(transaction.amount for transaction in transactions)
-    
+
     return render_template("transactions/index.jinja", transactions = transactions, transactions_sum=transactions_sum, budget=budget)
 
 @transactions_blueprint.route("/transactions/<int:id>")
@@ -96,7 +96,7 @@ def sort_transactions(column):
     transactions = get_transactions()
     transactions_sum = sum(transaction.amount for transaction in transactions)
 
-    if column == 'user':
+    if column == 'username':
         transactions = sorted(transactions, key=lambda t: t.user.username)
     if column == 'merchant':
         transactions = sorted(transactions, key=lambda t: t.merchant.name)

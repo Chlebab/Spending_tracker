@@ -3,8 +3,51 @@
     rel="stylesheet"
     href="{{ url_for('static', filename='style.css') }}"/>
 {% endblock %} 
-<h1> {{user.username}} </h1>
-<p>
-    <a href="/users">Return</a>
-</p>
-<h3>Details:</h3>
+<h1>{{user.username}}'s transactions</h1>
+<body>
+<main>
+    <nav>
+        <ul>
+            <li>
+                <a href="/users">Return</a>
+            </li>
+        </ul>
+    </nav>
+</main>
+</body>
+<p class="TotalSpendings">Total spendings: {{ transactions_sum }}</p>
+
+<form action="/users/{{ user.id }}" method="GET">
+    <label for="start_date">Start Date:</label>
+    <input type="date" name="start_date" id="start_date">
+    <label for="end_date">End Date:</label>
+    <input type="date" name="end_date" id="end_date">
+    <input type="submit" value="Filter transactions by date">
+</form>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Merchant</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ transaction.merchant.name }}</td>
+            <td>{{ transaction.tag.category }}</td>
+            <td>{{ transaction.amount }}</td>
+            <td>{{ transaction.date }}</td>
+            <td>{{ transaction.comment }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

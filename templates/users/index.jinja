@@ -25,6 +25,7 @@
         <tr>
             <th>Users: </th>
             <th>Funds: </th>
+            <th>Spendings: </th>
             <th>Delete: </th>
             <th>Edit: </th>
         </tr>
@@ -34,6 +35,7 @@
         <tr>
             <td><a href="/users/{{ user.id }}">{{ user.username }}</a></td>
             <td>{{ user.funds }}</td>          
+            <td>{{ user.transactions_sum }}</td>          
             <td>
                 <form action="/users/delete" method="POST">
                     <input type="hidden" name="user_id" value="{{ user.id }}">

@@ -23,17 +23,17 @@
 </main>
 </body>
 {% if budget %}
-    <p>Your budget: {{ budget.budget_amount }}</p>
+    <p class ="Budget">Your budget: {{ budget.budget_amount }}</p>
 {% else %}
     <p>No budget set.</p>
 {% endif %}
 
-<p>Total spendings: {{ transactions_sum }}</p>
+<p class="TotalSpendings">Total spendings: {{ transactions_sum }}</p>
 
 {% if budget and budget.budget_amount < transactions_sum %}
-    <p>You are over the budget by: {{ transactions_sum - budget.budget_amount }}</p>
+    <p class="OverBudget">You are over the budget by: {{ transactions_sum - budget.budget_amount }}</p>
 {% elif budget and budget.budget_amount - transactions_sum < 500 %}
-    <p>You are nearly at the budget!</p>
+    <p class="AlmostBudget">You are nearly at the budget!</p>
 {% endif %}
 <form action="/transactions" method="GET">
     <label for="start_date">Start Date:</label>

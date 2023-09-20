@@ -23,7 +23,7 @@ h3 {
     font-family: verdana, Arial;
     font-size: 70px;   
     padding: 20px; 
-    background-color: rgb(51, 35, 35);
+    background-color: rgba(51, 35, 35, 0.725);
     color: rgb(154, 167, 179);
     border-radius: 50px;
     margin-bottom: 10px;
@@ -33,9 +33,43 @@ h3 {
     align-items: column;
 }
 
+.TotalSpendings {
+    font-family: verdana, Arial;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(154, 167, 179);
+}
+
+.AlmostBudget {
+    font-family: verdana, Arial;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(176, 112, 42);
+}
+
+.OverBudget {
+    font-family: verdana, Arial;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(227, 59, 59);
+}
+
+.Budget {
+    font-family: verdana, Arial;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(154, 167, 179);
+}
+
+
+
 main>nav>ul {
     font-family: verdana, Arial;
-    font-size: 35px;
+    font-size: 20px;
     display: flex;
     justify-content: space-evenly;
     list-style: none;
@@ -44,12 +78,15 @@ main>nav>ul {
 }
 body {
     background-color: rgb(95, 79, 79);
+    color:rgb(210, 218, 206);
+    text-decoration: none;
+    font-size: 25px;
 
 }
 a {
     color:rgb(210, 218, 206);
     text-decoration: none;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 a:hover {
@@ -59,7 +96,7 @@ a:hover {
 
 main>nav>ul>li>a {
     color: rgb(154, 167, 179);
-    background-color: rgb(118, 82, 82);
+    background-color: rgb(74, 54, 54);
     text-decoration: none;
     padding: 10px 20px;
     border-radius: 50px;
@@ -71,6 +108,8 @@ table {
     width: 100%;
     border-collapse: collapse;
     background-color: rgb(76, 56, 56);
+    font-size: 20px;
+
 }
 
 th, td {
