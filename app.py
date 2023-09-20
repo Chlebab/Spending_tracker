@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'static'
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:password@localhost:5432/spending_tracker"
 db = SQLAlchemy(app)
@@ -30,10 +31,21 @@ app.register_blueprint(budgets_blueprint)
 app.register_blueprint(users_blueprint)
 app.register_blueprint(vaults_blueprint)
 
-@app.route('/')
+@app.route('/', methods=["POST", "GET"])
 def home():
-    return render_template('index.jinja')
+    image_filename = 'wallet.png'  
+    image_filename = 'vault.png'  
+    image_filename = 'user.png'  
+    image_filename = 'merchant.png'  
+    image_filename = 'tag.png'  
+    image_filename = 'home.png'  
+    image_filename = 'budget.png'  
+    image_filename = 'add.png'  
+    image_filename = 'bank.png'  
+    return render_template('base.jinja', image_filename=image_filename)
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
 
