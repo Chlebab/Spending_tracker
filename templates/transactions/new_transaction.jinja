@@ -6,6 +6,13 @@
 <h1>Add a Transaction</h1>
 
 <form action="/transactions" method="post">
+    <label for="user">Select an user:</label>
+        <select name="user_id" id="users">
+        {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+        {% endfor %}
+        </select>
+
     <label for="merchant">Select a merchant:</label>
         <select name="merchant_id" id="merchants">
         {% for merchant in merchants %}
@@ -14,6 +21,7 @@
             {% endif %}
         {% endfor %}
         </select>
+
     <label for="tag">Select a tag:</label>
         <select name="tag_id" id="tags">
             {% for tag in tags %}

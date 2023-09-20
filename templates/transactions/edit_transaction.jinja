@@ -9,9 +9,20 @@
 </head>
 <body>
     <h1>Edit transaction:</h1>
-    <h2>Merchant:{{transaction.merchant.name}} Tag:{{transaction.tag.category}} Amount:{{transaction.amount}}</h2>
+    <h2>User:{{transaction.user.username}} Merchant:{{transaction.merchant.name}} Tag:{{transaction.tag.category}} Amount:{{transaction.amount}}</h2>
 
     <form method="post" action="/transactions/edit/{{ transaction.id }}">
+        <label for="user_username">User: </label>
+            <select id="user_username" name="user_id" required>
+            {% for user in users %}
+                    <option value="{{ user.id }}"
+                        {% if user.id == transaction.user_id %}
+                            selected
+                        {% endif %}                    
+                >{{ user.username }}</option>    
+            {% endfor %}
+        </select>
+
         <label for="merchant_name">Merchant name:</label>
             <select id="merchant_name" name="merchant_id" required>
             {% for merchant in merchants %}
@@ -26,7 +37,7 @@
         </select>
 
         <label for="tag_category">Tag category: </label>
-        <select id="tag_category" name="tag_id" required>
+            <select id="tag_category" name="tag_id" required>
             {% for tag in tags %}
                 {% if tag.activate_tag == True %}
                     <option value="{{ tag.id }}"
@@ -35,7 +46,6 @@
                         {% endif %}                    
                 >{{ tag.category }}</option>                   
                 {% endif %}
-
             {% endfor %}
         </select>
 

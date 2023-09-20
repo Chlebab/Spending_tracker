@@ -49,6 +49,7 @@
     <thead>
         <tr>
             <th>No.</th>
+            <th><a href="{{ url_for('transactions.sort_transactions', column='username') }}">User</a></th>
             <th><a href="{{ url_for('transactions.sort_transactions', column='merchant') }}">Merchant</a></th>
             <th><a href="{{ url_for('transactions.sort_transactions', column='category') }}">Category</a></th>
             <th><a href="{{ url_for('transactions.sort_transactions', column='amount') }}">Amount</a></th>
@@ -62,6 +63,7 @@
         {% for transaction in transactions %}
         <tr>
             <td>{{ loop.index }}</td>
+            <td>{{ transaction.user.username }}</td>
             <td>{{ transaction.merchant.name }}</td>
             <td>{{ transaction.tag.category }}</td>
             <td>{{ transaction.amount }}</td>

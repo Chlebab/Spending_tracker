@@ -15,6 +15,11 @@ def users():
     users = User.query.all()
     return render_template("users/index.jinja", users = users)
 
+@users_blueprint.route("/users/<id>")
+def show(id):
+    user = User.query.get(id)
+    return render_template("users/show_user.jinja", user=user)
+
 @users_blueprint.route("/users/new", methods=["GET"])
 def new_user_form():
     return render_template("users/new_user.jinja")
@@ -51,3 +56,4 @@ def edit_user(id):
         user_to_edit.funds = new_user_funds
         db.session.commit()
         return redirect(f"/users")
+    
