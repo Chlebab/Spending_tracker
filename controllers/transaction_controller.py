@@ -95,9 +95,10 @@ def get_transactions():
 def sort_transactions(column):
     transactions = get_transactions()
     transactions_sum = sum(transaction.amount for transaction in transactions)
-
+    # could rewrite this logic (and we would want to extract it out as well)
+    
     if column == 'username':
-        transactions = sorted(transactions, key=lambda t: t.user.username)
+        transactions = sorted(transactions, key=lambda transaction: transaction.user.username)
     if column == 'merchant':
         transactions = sorted(transactions, key=lambda t: t.merchant.name)
     elif column == 'category':
@@ -108,5 +109,19 @@ def sort_transactions(column):
         transactions = sorted(transactions, key=lambda t: t.date)
     elif column == 'comment':
         transactions = sorted(transactions, key=lambda t: t.comment)
+    
+    # refactor of above code ^ 
+    # note I changed your lambda function param from t -> transaction, PEP8 style guide doesn't specifically mention avoiding single letter variable names, it's a stylistic choice, in the real world you would do whatever the company you work for does. 
+    # sorting_keys = {
+    #     'username': lambda transaction: transaction.user.username,
+    #     'merchant': lambda transaction: transaction.merchant.name,
+    #     'category': lambda transaction: transaction.tag.category,
+    #     'amount': lambda transaction: transaction.amount,
+    #     'date': lambda transaction: transaction.date,
+    #     'comment': lambda transaction: transaction.comment
+    # }
+    # transactions = sorted(transactions, key=sorting_keys[column])
+        
+
     return render_template("transactions/index.jinja", transactions=transactions, transactions_sum=transactions_sum) 
 

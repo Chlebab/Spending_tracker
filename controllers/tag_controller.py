@@ -43,6 +43,8 @@ def delete_tag():
 def activate_tag():
     id = request.form.get("tag_id") 
     tag_to_activate = Tag.query.get(id)
+    # can simplify below code to something less verbose. 
+    # tag_to_activate.activate_tag = not tag_to_activate.activate_tag
     if tag_to_activate.activate_tag == False:
         tag_to_activate.activate_tag = True
     elif tag_to_activate.activate_tag == True:
