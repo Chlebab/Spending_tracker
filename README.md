@@ -1,5 +1,6 @@
 # Spending_tracker
 This program allows a user to track spending and budget.
+Written in Python.
 
 Technologies: 
   -> Python3
