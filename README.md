@@ -1,5 +1,29 @@
 # Spending_tracker
-Allows to track spendings
+This program allows a user to track spending and budget.
+
+Technologies: 
+  -> Python3
+  -> Postgresql
+
+Dependencies:
+
+Start guide:
+  pip3 install flask
+  pip3 install flask-sqlalchemy
+  pip3 install python-dotenv
+  pip3 install flask-migrate
+  pip3 install psycopg2
+
+  createdb spending_tracker
+
+  in app.py
+  app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://<your postgres user>@localhost:5432/spending_tracker"
+
+Running the program:
+  flask db init
+  flask db upgrade
+
+
 
 <!-- you should add a readme, it should contain the following -->
 <!-- 1. context to the program, what is this, when did you do it, what are the technoglies used/what is needed to run the app-->
